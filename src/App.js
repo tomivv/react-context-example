@@ -1,25 +1,22 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { AlertProvider } from './components/AlertContext';
+import useAlert from './components/useAlert';
+import Alert from './components/Alert';
+import Main from './components/Main';
 
 function App() {
+
+  const { alert, changeAlert } = useAlert();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AlertProvider value={changeAlert}>
+      <div className="App">
+        <Alert alert={alert} />
+        <Main />
+      </div>
+    </AlertProvider>
   );
 }
 
